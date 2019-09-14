@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
+import java.io.File;
 
 public class GUI {
     public static final String OPEN = "open";
@@ -24,6 +25,42 @@ public class GUI {
 
     public GUI(){
         createAndShowGui();
+    }
+
+    public File getFile(){
+        fileChooser.showOpenDialog(window);
+        return fileChooser.getSelectedFile();
+    }
+
+    public void showEnglishWord(String englishWord){
+        this.englishWord.setText(englishWord);
+    }
+
+    public String getTextToCheck(){
+        return answerTextField.getText();
+    }
+
+    public void resetPoints(){
+        points = 0;
+        this.score.setText(points.toString());
+    }
+
+    public void addPoints(){
+        this.score.setText((points += 1).toString());
+        this.answerInfo.setText(":)");
+    }
+
+    public void takePoint(){
+        this.score.setText((points -= 1).toString());
+        this.answerInfo.setText(":(");
+    }
+
+    public void clearTextField(){
+        this.answerTextField.setText("");
+    }
+
+    public void showGameOverInfo(){
+        JOptionPane.showMessageDialog(window, "End of the game! Your score: " + points);
     }
 
     private void createAndShowGui(){
