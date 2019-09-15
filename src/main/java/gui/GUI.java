@@ -1,7 +1,12 @@
+package gui;
+
+import controller.Controller;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 public class GUI {
@@ -22,6 +27,7 @@ public class GUI {
     private JLabel imageLabel;
     private JFileChooser fileChooser;
     private Integer points;
+    private Controller controller;
 
     public GUI(){
         createAndShowGui();
@@ -63,13 +69,19 @@ public class GUI {
         JOptionPane.showMessageDialog(window, "End of the game! Your score: " + points);
     }
 
+    public void setController(Controller controller){
+        this.controller = controller;
+        open.addActionListener(controller);
+        startGame.addActionListener(controller);
+        checkAnswer.addActionListener(controller);
+    }
+
     private void createAndShowGui(){
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         window = new JFrame("Translation game");
         window.setLayout(null);
         window.setMinimumSize(new Dimension(500, 500));

@@ -1,12 +1,16 @@
+package controller;
+
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import model.Dictionary;
 import java.util.Optional;
 
 import model.CsvDao;
 import model.DAO;
+import gui.GUI;
 
-public class Controller {
+public class Controller implements ActionListener {
     private GUI gui;
     private Dictionary dictionary;
     private String englishWord;
